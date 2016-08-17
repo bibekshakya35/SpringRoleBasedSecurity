@@ -1,0 +1,69 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+     xmlns:security="http://www.springframework.org/schema/security"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+   
+    http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
+      
+    
+    
+
+    
+    
+    
+   <http auto-config="true" >
+        <intercept-url pattern="/" access="permitAll" />
+        
+   
+      <form-login  login-page="/"  username-parameter="username" login-processing-url="/login.action" password-parameter="password" 
+      authentication-success-handler-ref="customSuccessHandler"
+      authentication-failure-url="/accessDenied.action"/>
+
+
+       <csrf disabled="true"/>
+       
+    </http> 
+  
+  
+   
+    
+    
+    
+    <beans:bean id="customSuccessHandler" class="com.spring.security.RestAuthenticationSuccessHandler" />
+    
+    
+    
+    
+    
+
+    
+    
+    <authentication-manager id="dao-auth">
+        <authentication-provider user-service-ref="userDetailsService">
+        </authentication-provider>
+    </authentication-manager>
+    
+    
+    
+  
+    
+   
+
+<beans:bean  id="userDetailsService"
+		class="com.spring.security.AppUserDetailsServiceDAO">
+		
+		
+		 
+	 </beans:bean>
+    
+    
+    
+    
+    
+    
+    
+    
+      
+     
+</beans:beans>
